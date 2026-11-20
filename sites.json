@@ -271,15 +271,6 @@
       "label": "Open site",
       "url": "https://dolphin-emu.org",
       "private": false
-    },
-    {
-      "id": "r6",
-      "system": "NDS",
-      "title": "melonDS",
-      "desc": "Nintendo DS emulator.",
-      "label": "Open site",
-      "url": "https://melonds.kuribo64.net",
-      "private": false
     }
   ],
   "meta": {
