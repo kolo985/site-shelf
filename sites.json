@@ -237,15 +237,6 @@
       "private": false
     },
     {
-      "id": "r2",
-      "system": "GBA",
-      "title": "mGBA",
-      "desc": "Open-source Game Boy Advance emulator.",
-      "label": "Open site",
-      "url": "https://mgba.io",
-      "private": false
-    },
-    {
       "id": "r3",
       "system": "PS2",
       "title": "PCSX2",
