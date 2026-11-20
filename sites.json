@@ -2,9 +2,9 @@
   "sites": [
     {
       "id": "g1795180655926",
+      "system": "",
       "tab": "useful",
       "name": "Ryan Retro",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Retro Handhelds, Deals & Videos",
@@ -26,9 +26,9 @@
     },
     {
       "id": "g1795180428367",
+      "system": "",
       "tab": "useful",
       "name": "Retro Catalog",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Your guide to your perfect gaming handheld",
@@ -50,9 +50,9 @@
     },
     {
       "id": "g1795180351919",
+      "system": "",
       "tab": "useful",
       "name": "Cocoon Shell",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "A customisable Android frontend for retro gaming handhelds.",
@@ -74,9 +74,9 @@
     },
     {
       "id": "g1795180224612",
+      "system": "",
       "tab": "useful",
       "name": "r/SBCGaming",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Retro gaming on handheld emulators and Single Board Computers (SBCs). Find the latest news on upcoming devices, learn how to tweak custom firmware, show off your handhelds, and get device and game recommendations!",
@@ -98,9 +98,9 @@
     },
     {
       "id": "g1795180162357",
+      "system": "",
       "tab": "useful",
       "name": "RetroAchievements",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Adding achievements to retro games since 2012",
@@ -122,9 +122,9 @@
     },
     {
       "id": "g1795179988761",
+      "system": "",
       "tab": "useful",
       "name": "freemediaheckyeah",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "The largest collection of free stuff on the internet!",
@@ -146,9 +146,9 @@
     },
     {
       "id": "g1795179767312",
+      "system": "",
       "tab": "stores",
       "name": "AYANEO",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Official store page for AYANEO",
@@ -170,9 +170,9 @@
     },
     {
       "id": "g1795179479419",
+      "system": "",
       "tab": "stores",
       "name": "Miyoo",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Official store page for Retroid",
@@ -194,9 +194,9 @@
     },
     {
       "id": "g1795179417581",
+      "system": "",
       "tab": "stores",
       "name": "Anbernic",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Official store page for Anbernic",
@@ -218,9 +218,9 @@
     },
     {
       "id": "g1795179158466",
+      "system": "",
       "tab": "stores",
       "name": "Retroid",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Official store page for Retroid",
@@ -242,9 +242,9 @@
     },
     {
       "id": "g1795179016405",
+      "system": "",
       "tab": "stores",
       "name": "AYN",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Official store page for AYN",
@@ -266,9 +266,9 @@
     },
     {
       "id": "g1795178819627",
+      "system": "GBA",
       "tab": "roms",
       "name": "ROMsPack",
-      "system": "GBA",
       "systems": [
         "GBA",
         "PS2",
@@ -304,9 +304,9 @@
     },
     {
       "id": "g1795178684215",
+      "system": "Switch",
       "tab": "roms",
       "name": "Romsheaven",
-      "system": "Switch",
       "systems": [
         "Switch",
         "GBA",
@@ -346,9 +346,9 @@
     },
     {
       "id": "g1795178497973",
+      "system": "Switch",
       "tab": "roms",
       "name": "Axekin",
-      "system": "Switch",
       "systems": [
         "Switch",
         "GBA",
@@ -387,9 +387,9 @@
     },
     {
       "id": "g1795178409460",
+      "system": "Switch",
       "tab": "roms",
       "name": "Ziperto",
-      "system": "Switch",
       "systems": [
         "Switch",
         "3DS",
@@ -419,9 +419,9 @@
     },
     {
       "id": "g1795178226196",
+      "system": "Switch",
       "tab": "roms",
       "name": "NXBrew",
-      "system": "Switch",
       "systems": [
         "Switch",
         "Switch 2"
@@ -446,9 +446,9 @@
     },
     {
       "id": "g1795178143450",
+      "system": "GBA",
       "tab": "roms",
       "name": "Vimm's Lair: The Vault",
-      "system": "GBA",
       "systems": [
         "GBA",
         "PS2",
@@ -484,9 +484,9 @@
     },
     {
       "id": "g1795178042472",
+      "system": "Switch",
       "tab": "roms",
       "name": "RomsLab",
-      "system": "Switch",
       "systems": [
         "Switch",
         "Switch 2"
@@ -511,9 +511,9 @@
     },
     {
       "id": "g1795177432182",
+      "system": "GBA",
       "tab": "roms",
       "name": "ROMSFUN",
-      "system": "GBA",
       "systems": [
         "GBA",
         "PS2",
@@ -549,9 +549,9 @@
     },
     {
       "id": "g1795177195885",
+      "system": "Switch",
       "tab": "roms",
       "name": "Luma Switch",
-      "system": "Switch",
       "systems": [
         "Switch"
       ],
