@@ -289,6 +289,15 @@
       "label": "Download",
       "url": "https://drive.google.com/file/d/16l8_5nTYCNFlgLDCdhDt3N7eVtbTbMMh/view?usp=sharing",
       "private": false
+    },
+    {
+      "id": "r1795176914547",
+      "system": "Obtainium",
+      "title": "Obtainium Emulator Pack",
+      "desc": ".json File for Obtainium which gets u emulators and some other goodies too",
+      "label": "Download",
+      "url": "https://github.com/RJNY/Obtainium-Emulation-Pack/releases",
+      "private": false
     }
   ],
   "meta": {
