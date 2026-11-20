@@ -253,24 +253,6 @@
       "label": "Open site",
       "url": "https://pcsx2.net",
       "private": false
-    },
-    {
-      "id": "r4",
-      "system": "PS1",
-      "title": "DuckStation",
-      "desc": "PlayStation 1 emulator.",
-      "label": "Open site",
-      "url": "https://www.duckstation.org",
-      "private": false
-    },
-    {
-      "id": "r5",
-      "system": "GameCube",
-      "title": "Dolphin",
-      "desc": "GameCube and Wii emulator.",
-      "label": "Open site",
-      "url": "https://dolphin-emu.org",
-      "private": false
     }
   ],
   "meta": {
