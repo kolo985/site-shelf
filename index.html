@@ -490,11 +490,15 @@ body .tbtn:active{--by:-42px}
   <h2 id="authTitle">Login</h2>
   <p class="sub" id="authSub">Admin panel</p>
   <form id="authForm" autocomplete="on">
-    <input id="a_user" placeholder="User / Email" autocomplete="username" required maxlength="64">
-    <input id="a_pw" type="password" placeholder="Password" autocomplete="current-password" required maxlength="128">
-    <input id="a_pw2" type="password" placeholder="Repeat password" autocomplete="new-password" maxlength="128" hidden>
+    <input id="a_owner" placeholder="GitHub username" autocomplete="username" required maxlength="64" spellcheck="false" autocapitalize="off">
+    <input id="a_repo" placeholder="Repository name" autocomplete="off" required maxlength="100" spellcheck="false" autocapitalize="off">
+    <input id="a_token" type="password" placeholder="GitHub access token (github_pat_…)" autocomplete="current-password" required maxlength="255" spellcheck="false">
+    <details style="margin:6px 0 2px;font-size:.85rem"><summary style="cursor:pointer">Advanced</summary>
+      <input id="a_branch" placeholder="Branch (main)" autocomplete="off" maxlength="100" spellcheck="false" style="margin-top:6px">
+      <input id="a_path" placeholder="Data file (sites.json)" autocomplete="off" maxlength="200" spellcheck="false">
+    </details>
     <p class="msg" id="authMsg" role="alert"></p>
-    <button class="pill wide" type="submit" id="authSubmit">Enter</button>
+    <button class="pill wide" type="submit" id="authSubmit">Log in</button>
     <button class="pill wide" type="button" data-close>Close</button>
   </form>
   </div>
@@ -523,16 +527,8 @@ body .tbtn:active{--by:-42px}
     <p style="color:var(--muted);font-size:.85rem;margin:0 0 10px;line-height:1.5">Shown on the round admin icon, top right. It is saved with your catalog, so visitors see it too.</p>
     <div class="row" style="margin-top:0"><input type="file" id="s_avatar" accept="image/*"><button class="pill" id="avatarClear" type="button">Remove picture</button></div>
   </div>
-  <div class="sect"><h3>Change password</h3>
-    <form id="pwForm" autocomplete="off">
-      <label>Current password<input id="s_cur" type="password" autocomplete="current-password" required></label>
-      <label>New password (min 10 characters)<input id="s_new" type="password" autocomplete="new-password" required minlength="10"></label>
-      <label>Repeat new password<input id="s_new2" type="password" autocomplete="new-password" required minlength="10"></label>
-      <div class="row" style="margin-top:0"><button class="pill active" type="submit">Change password</button></div>
-    </form>
-  </div>
   <div class="sect"><h3>Auto-publish to GitHub</h3>
-    <p style="color:var(--muted);font-size:.85rem;margin:0 0 10px;line-height:1.5">When on, every change you make is committed to <b>sites.json</b> in your repository, and the live site updates a minute or two later. Create a <i>fine-grained personal access token</i> limited to this one repository with <b>Contents: Read and write</b> (GitHub → Settings → Developer settings → Fine-grained tokens). The token is kept only for this browser tab: it is forgotten when you close the tab or log out, so you will paste it again next time. It is never included in exports or backups.</p>
+    <p style="color:var(--muted);font-size:.85rem;margin:0 0 10px;line-height:1.5">This token is also how you log in as admin: only someone holding a token with write access to your repository can. When on, every change you make is committed to <b>sites.json</b> in your repository, and the live site updates a minute or two later. Create a <i>fine-grained personal access token</i> limited to this one repository with <b>Contents: Read and write</b> (GitHub → Settings → Developer settings → Fine-grained tokens). The token is kept only for this browser tab: it is forgotten when you close the tab or log out, so you will paste it again next time. It is never included in exports or backups.</p>
     <form id="ghForm" autocomplete="off">
       <label>GitHub username / owner<input id="g_owner" placeholder="your-username"></label>
       <label>Repository name<input id="g_repo" placeholder="your-repo"></label>
@@ -651,7 +647,7 @@ body .tbtn:active{--by:-42px}
 /* ---------- Config & data ---------- */
 const DRAFT_KEY = "siteshelf.v1.draft", AUTH_KEY = "gameshelf.v3.auth", LOCK_KEY = "gameshelf.v3.lock",
       SESSION_KEY = "gameshelf.v3.session";
-const IDLE_MS = 30 * 60 * 1000, MAX_FAILS = 5, LOCK_MS = 5 * 60 * 1000, PBKDF2_ITER = 210000, MIN_PW = 10;
+const IDLE_MS = 30 * 60 * 1000;
 const SYSTEMS = ["Switch","GBA","PS2","PS1","PSP","N64","GameCube","Wii","NDS","3DS","SNES","NES","Genesis","PC","Other"];
 const seed = [
   {id:"s1",tab:"guides",name:"Serebii.net",system:"Switch",genre:"Wiki",players:"Free",desc:"Pokémon news, Pokédex data and game guides.",link:"https://www.serebii.net",linklabel:"Visit site"},
@@ -730,7 +726,7 @@ async function fetchBase(){
   try{
     const r = await fetch("sites.json", {cache:"no-store"}); if(!r.ok) throw 0;
     const d = await r.json(); const sl = Array.isArray(d) ? d : d.sites; if(!Array.isArray(sl)) throw 0;
-    base = {sites: sl.filter(g=>g && g.name), tabs: (!Array.isArray(d) && Array.isArray(d.tabs)) ? d.tabs : undefined, cats: (!Array.isArray(d) && Array.isArray(d.cats)) ? d.cats : [], resources: Array.isArray(d.resources) ? d.resources : resourcesSeed, meta: (!Array.isArray(d) && d.meta) || {}};
+    base = {sites: sl.filter(g=>g && g.name), tabs: (!Array.isArray(d) && Array.isArray(d.tabs)) ? d.tabs : undefined, cats: (!Array.isArray(d) && Array.isArray(d.cats)) ? d.cats : [], resources: Array.isArray(d.resources) ? d.resources : resourcesSeed, meta: (!Array.isArray(d) && d.meta) || {} };
   }catch(e){ /* no sites.json: use the built-in sample data */ }
 }
 function useData(){
@@ -755,28 +751,19 @@ function applyMeta(){
   $("authBtn").innerHTML = ok ? `<img src="${av}" alt="">` : '<i class="xi user"></i>';
 }
 
-/* ---------- Auth (client-side gate: PBKDF2 hash, lockout, idle session) ---------- */
-const enc = new TextEncoder();
-const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
-const unb64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-const getAuth = () => lsGet(AUTH_KEY);
-async function hashPw(pw, salt, iter){
-  const key = await crypto.subtle.importKey("raw", enc.encode(pw), "PBKDF2", false, ["deriveBits"]);
-  return new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2", hash:"SHA-256", salt, iterations:iter}, key, 256));
+/* ---------- Auth: the admin is whoever holds a GitHub token with write access to the repo.
+   No password or hash is stored or published anywhere; the token is kept in sessionStorage only. ---------- */
+async function checkToken(owner, repo, token){
+  let r;
+  try{ r = await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`, {headers:{Authorization:`Bearer ${token}`, Accept:"application/vnd.github+json", "X-GitHub-Api-Version":"2022-11-28"}, cache:"no-store"}); }
+  catch(e){ return {ok:false, offline:true, error:"Can't reach GitHub. Check your connection and try again."}; }
+  if(r.status === 401) return {ok:false, error:"GitHub rejected that token (invalid or expired)."};
+  if(r.status === 403 || r.status === 404) return {ok:false, error:"That token can't access this repository. Check the username, repository name and token."};
+  if(!r.ok) return {ok:false, offline:true, error:"GitHub error " + r.status + ". Try again in a moment."};
+  let j = {}; try{ j = await r.json(); }catch(e){}
+  if(j.permissions && j.permissions.push !== true) return {ok:false, error:"That token can't write to this repository. It needs Contents: Read and write."};
+  return {ok:true};
 }
-function same(a,b){ if(a.length!==b.length) return false; let d=0; for(let i=0;i<a.length;i++) d|=a[i]^b[i]; return d===0; }
-async function createAccount(user, pw){
-  const salt = crypto.getRandomValues(new Uint8Array(16));
-  const h = await hashPw(pw, salt, PBKDF2_ITER);
-  lsSet(AUTH_KEY, {user:user.trim().toLowerCase(), salt:b64(salt), hash:b64(h), iter:PBKDF2_ITER});
-}
-async function verify(user, pw){
-  const a = getAuth(); if(!a) return false;
-  const h = await hashPw(pw, unb64(a.salt), a.iter);          // always hash, so timing doesn't reveal the username
-  const okHash = same(h, unb64(a.hash)), okUser = user.trim().toLowerCase() === a.user;
-  return okHash && okUser;
-}
-const lockState = () => lsGet(LOCK_KEY) || {fails:0, until:0};
 function sessionValid(){ try{ return Number(sessionStorage.getItem(SESSION_KEY)) > Date.now(); }catch(e){ return false; } }
 function touch(){ if(admin){ try{ sessionStorage.setItem(SESSION_KEY, String(Date.now()+IDLE_MS)); }catch(e){} } }
 function startSession(){ admin = true; touch(); useData(); applyMeta(); render(); }
@@ -789,43 +776,44 @@ function logout(note){
 setInterval(() => { if(admin && !sessionValid()) logout("Your admin session expired. Please log in again."); }, 20000);
 ["click","keydown"].forEach(ev => document.addEventListener(ev, touch, {passive:true}));
 
+function guessRepo(){
+  const c = lsGet(GH_KEY);                                   // GH_KEY is declared further down; this only runs on a click
+  if(c && c.owner && c.repo) return {owner:c.owner, repo:c.repo, branch:c.branch || "main", path:c.path || "sites.json"};
+  const m = location.hostname.match(/^([^.]+)\.github\.io$/i);
+  if(m){ const seg = location.pathname.split("/").filter(Boolean)[0]; return {owner:m[1], repo:(seg && !/\.[a-z0-9]+$/i.test(seg)) ? seg : m[1] + ".github.io", branch:"main", path:"sites.json"}; }
+  return {owner:"", repo:"", branch:"main", path:"sites.json"};
+}
 function openAuth(){
   if(admin) return openSettings();
-  const first = !getAuth();
-  $("authTitle").textContent = first ? "Create admin account" : "Login";
-  $("authSub").textContent = first ? "First time here: choose your admin login" : S.meta.siteName + " admin panel";
-  $("a_pw2").hidden = !first; $("a_pw2").required = first;
-  $("a_pw").autocomplete = first ? "new-password" : "current-password";
-  $("authSubmit").textContent = first ? "Create account" : "Enter";
-  $("authMsg").textContent = ""; $("a_pw").value = ""; $("a_pw2").value = "";
-  $("authOv").classList.add("open"); $("a_user").focus();
+  const g = guessRepo();
+  $("authTitle").textContent = "Admin login";
+  $("authSub").textContent = "Log in with a GitHub access token that can write to this site's repository.";
+  $("a_owner").value = g.owner; $("a_repo").value = g.repo; $("a_branch").value = g.branch === "main" ? "" : g.branch; $("a_path").value = g.path === "sites.json" ? "" : g.path;
+  $("authMsg").textContent = ""; $("a_token").value = "";
+  $("authOv").classList.add("open"); (g.owner && g.repo ? $("a_token") : $("a_owner")).focus();
 }
 $("authForm").addEventListener("submit", async e => {
   e.preventDefault();
   const msg = t => $("authMsg").textContent = t;
-  if(!(window.crypto && crypto.subtle)) return msg("This browser can't do secure hashing here. Open the site over https.");
-  const user = $("a_user").value.trim(), pw = $("a_pw").value;
-  const btn = $("authSubmit"); btn.disabled = true;
+  const owner = $("a_owner").value.trim(), repo = $("a_repo").value.trim(), token = $("a_token").value.trim();
+  const branch = $("a_branch").value.trim() || "main", path = ($("a_path").value.trim() || "sites.json").replace(/^\/+/, "");
+  if(!/^[\w.-]+$/.test(owner) || !/^[\w.-]+$/.test(repo)) return msg("Enter your GitHub username and the repository name (no spaces or slashes).");
+  if(!token) return msg("Paste your GitHub access token.");
+  const btn = $("authSubmit"); btn.disabled = true; msg("Checking with GitHub…");
   try{
-    if(!getAuth()){                                   // first-run setup
-      if(user.length < 3) return msg("Username must be at least 3 characters.");
-      if(pw.length < MIN_PW) return msg(`Password must be at least ${MIN_PW} characters.`);
-      if(pw !== $("a_pw2").value) return msg("Passwords don't match.");
-      await createAccount(user, pw); closeAll(); return startSession();
-    }
-    const lk = lockState();
-    if(lk.until > Date.now()) return msg(`Too many attempts. Try again in ${Math.ceil((lk.until-Date.now())/60000)} min.`);
-    if(await verify(user, pw)){ lsSet(LOCK_KEY, {fails:0, until:0}); closeAll(); return startSession(); }
-    const fails = lk.fails + 1;
-    lsSet(LOCK_KEY, fails >= MAX_FAILS ? {fails:0, until:Date.now()+LOCK_MS} : {fails, until:0});
-    msg(fails >= MAX_FAILS ? "Too many attempts. Locked for 5 minutes." : "Invalid user or password.");
-  } finally { btn.disabled = false; $("a_pw").value = ""; $("a_pw2").value = ""; }
+    const res = await checkToken(owner, repo, token);
+    if(!res.ok) return msg(res.error);
+    const old = lsGet(GH_KEY) || {};
+    const enabled = (old.owner === owner && old.repo === repo && typeof old.enabled === "boolean") ? old.enabled : true;   // keep an earlier on/off choice for the same repo
+    lsSet(GH_KEY, {owner, repo, branch, path, enabled}); tokSet(token);
+    msg(""); closeAll(); startSession(); updatePubLabel();
+  } finally { btn.disabled = false; $("a_token").value = ""; }
 });
 
 /* ---------- Settings ---------- */
 function openSettings(){
   $("setMsg").textContent = ""; $("setMsg").className = "msg";
-  $("s_name").value = S.meta.siteName; $("s_clippy").checked = S.meta.clippyChat !== false; $("s_clippyshow").checked = S.meta.clippy !== false; $("s_tiktok").value = S.meta.tiktok || ""; ["s_cur","s_new","s_new2"].forEach(i => $(i).value = ""); fillGh();
+  $("s_name").value = S.meta.siteName; $("s_clippy").checked = S.meta.clippyChat !== false; $("s_clippyshow").checked = S.meta.clippy !== false; $("s_tiktok").value = S.meta.tiktok || ""; fillGh();
   $("setOv").classList.add("open");
 }
 const setMsg = (t, ok) => { $("setMsg").textContent = t; $("setMsg").className = "msg" + (ok ? " ok" : ""); };
@@ -853,14 +841,6 @@ $("socForm").addEventListener("submit", e => {
   if(v){ delete S.meta.tiktok; S.meta.tiktok = v; } else delete S.meta.tiktok;
   save(); applyMeta(); $("s_tiktok").value = v; setMsg(v ? "TikTok link saved." : "TikTok link removed.", true);
 });
-$("pwForm").addEventListener("submit", async e => {
-  e.preventDefault(); if(!admin) return;
-  const a = getAuth(), cur = $("s_cur").value, n1 = $("s_new").value, n2 = $("s_new2").value;
-  if(n1.length < MIN_PW) return setMsg(`New password must be at least ${MIN_PW} characters.`);
-  if(n1 !== n2) return setMsg("New passwords don't match.");
-  if(!(await verify(a.user, cur))) return setMsg("Current password is wrong.");
-  await createAccount(a.user, n1); ["s_cur","s_new","s_new2"].forEach(i => $(i).value = ""); setMsg("Password changed.", true);
-});
 $("discardBtn").addEventListener("click", () => {
   if(!admin || !confirm("Discard all changes made in this browser and go back to the published data?")) return;
   try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
@@ -883,7 +863,7 @@ const ghConf = () => {
 };
 const ghReady = () => { const c = ghConf(); return !!(c && c.enabled && c.owner && c.repo && c.token); };
 const ghHeaders = c => ({Authorization:`Bearer ${c.token}`, Accept:"application/vnd.github+json", "X-GitHub-Api-Version":"2022-11-28"});
-function publicData(){ return {sites:S.sites, tabs:S.tabs, cats:S.cats, resources:S.resources.filter(r=>!r.private), meta:S.meta}; }   // private links are never published
+function publicData(){ return {sites:S.sites, tabs:S.tabs, cats:S.cats, resources:S.resources.filter(r=>!r.private), meta:S.meta}; }   // private links are never published; no login data is ever published
 function updatePubLabel(){
   $("pubStatus").textContent = pubMsg || (ghReady()
     ? "auto-publish is on: your changes are sent to GitHub automatically."
@@ -1205,7 +1185,7 @@ function download(name, obj){
   a.href = URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:"application/json"}));
   a.download = name; a.click(); URL.revokeObjectURL(a.href);
 }
-$("exportBtn").addEventListener("click", () => admin && download("sites.json", {sites:S.sites, tabs:S.tabs, cats:S.cats, resources:S.resources.filter(r=>!r.private), meta:S.meta}));
+$("exportBtn").addEventListener("click", () => admin && download("sites.json", publicData()));
 $("importBtn").addEventListener("click", () => admin && $("importFile").click());
 $("importFile").addEventListener("change", async e => {
   const f = e.target.files[0]; if(!f || !admin) return;
@@ -1281,9 +1261,12 @@ document.addEventListener("click", e => { const b = e.target.closest("[data-get]
 
 /* ---------- Boot ---------- */
 (async function boot(){
+  try{ localStorage.removeItem(AUTH_KEY); localStorage.removeItem(LOCK_KEY); }catch(e){}   // password data left by earlier versions
   await fetchBase();
-  admin = !!getAuth() && sessionValid();
+  const gc = lsGet(GH_KEY);
+  admin = sessionValid() && !!tokGet() && !!(gc && gc.owner && gc.repo);
   useData(); applyMeta(); render();
+  if(admin){ const c = ghConf(); checkToken(c.owner, c.repo, c.token).then(r => { if(!r.ok && !r.offline) logout("Your GitHub token no longer works. Please log in again."); }); }
 })();
 </script>
 <script>
