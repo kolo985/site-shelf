@@ -240,7 +240,7 @@
       "id": "r3",
       "system": "PS2",
       "title": "PS2 BIOS",
-      "desc": "Open-source PlayStation 2 emulator with setup guides.",
+      "desc": "BIOS Files for PS2",
       "label": "Open site",
       "url": "https://pcsx2.net",
       "private": false
