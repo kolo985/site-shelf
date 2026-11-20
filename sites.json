@@ -1,0 +1,291 @@
+{
+  "sites": [
+    {
+      "id": "s1",
+      "tab": "guides",
+      "name": "Serebii.net",
+      "system": "Switch",
+      "genre": "Wiki",
+      "players": "Free",
+      "desc": "Pokémon news, Pokédex data and game guides.",
+      "link": "https://www.serebii.net",
+      "linklabel": "Visit site"
+    },
+    {
+      "id": "s2",
+      "tab": "guides",
+      "name": "GameFAQs",
+      "system": "PC",
+      "genre": "Guides",
+      "players": "Free",
+      "desc": "Walkthroughs, FAQs and message boards for thousands of games.",
+      "link": "https://gamefaqs.gamespot.com",
+      "linklabel": "Visit site"
+    },
+    {
+      "id": "s3",
+      "tab": "useful",
+      "name": "HowLongToBeat",
+      "system": "PC",
+      "genre": "Tools",
+      "players": "Free",
+      "desc": "Find out how long a game takes to finish.",
+      "link": "https://howlongtobeat.com",
+      "linklabel": "Visit site"
+    },
+    {
+      "id": "s4",
+      "tab": "useful",
+      "name": "Speedrun.com",
+      "system": "Other",
+      "genre": "Community",
+      "players": "Free",
+      "desc": "Leaderboards and forums for speedrunners.",
+      "link": "https://www.speedrun.com",
+      "linklabel": "Visit site"
+    },
+    {
+      "id": "s5",
+      "tab": "useful",
+      "name": "The Spriters Resource",
+      "system": "Other",
+      "genre": "Assets",
+      "players": "Free",
+      "desc": "A big library of sprites from classic games.",
+      "link": "https://www.spriters-resource.com",
+      "linklabel": "Visit site"
+    },
+    {
+      "id": "s6",
+      "tab": "useful",
+      "name": "GBAtemp",
+      "system": "Other",
+      "genre": "Forum",
+      "players": "Free",
+      "desc": "Console and handheld community forum.",
+      "link": "https://gbatemp.net",
+      "linklabel": "Visit site"
+    },
+    {
+      "id": "u1",
+      "tab": "useful",
+      "name": "7-Zip",
+      "system": "PC",
+      "genre": "Tools",
+      "players": "Free",
+      "desc": "Free file archiver for opening .zip, .7z and .rar files.",
+      "link": "https://www.7-zip.org",
+      "linklabel": "Open"
+    },
+    {
+      "id": "u2",
+      "tab": "useful",
+      "name": "Wayback Machine",
+      "system": "Other",
+      "genre": "Tools",
+      "players": "Free",
+      "desc": "Browse old copies of websites that have gone offline.",
+      "link": "https://web.archive.org",
+      "linklabel": "Open"
+    },
+    {
+      "id": "g1",
+      "tab": "guides",
+      "name": "Dolphin Wiki",
+      "system": "GameCube",
+      "genre": "Setup",
+      "players": "Free",
+      "desc": "Setup help and compatibility notes for the Dolphin emulator.",
+      "link": "https://wiki.dolphin-emu.org",
+      "linklabel": "Read guide"
+    },
+    {
+      "id": "e1",
+      "tab": "emus",
+      "name": "mGBA",
+      "system": "GBA",
+      "genre": "Emulator",
+      "players": "Free",
+      "desc": "Open-source Game Boy Advance emulator.",
+      "link": "https://mgba.io",
+      "linklabel": "Open"
+    },
+    {
+      "id": "e2",
+      "tab": "emus",
+      "name": "PCSX2",
+      "system": "PS2",
+      "genre": "Emulator",
+      "players": "Free",
+      "desc": "Open-source PlayStation 2 emulator.",
+      "link": "https://pcsx2.net",
+      "linklabel": "Open"
+    },
+    {
+      "id": "e3",
+      "tab": "emus",
+      "name": "DuckStation",
+      "system": "PS1",
+      "genre": "Emulator",
+      "players": "Free",
+      "desc": "PlayStation 1 emulator.",
+      "link": "https://www.duckstation.org",
+      "linklabel": "Open"
+    },
+    {
+      "id": "e4",
+      "tab": "emus",
+      "name": "Dolphin",
+      "system": "GameCube",
+      "genre": "Emulator",
+      "players": "Free",
+      "desc": "GameCube and Wii emulator.",
+      "link": "https://dolphin-emu.org",
+      "linklabel": "Open"
+    },
+    {
+      "id": "e5",
+      "tab": "emus",
+      "name": "melonDS",
+      "system": "NDS",
+      "genre": "Emulator",
+      "players": "Free",
+      "desc": "Nintendo DS emulator.",
+      "link": "https://melonds.kuribo64.net",
+      "linklabel": "Open"
+    },
+    {
+      "id": "t1",
+      "tab": "stores",
+      "name": "Steam Store",
+      "system": "PC",
+      "genre": "Store",
+      "players": "Free to browse",
+      "desc": "Valve's official PC game store.",
+      "link": "https://store.steampowered.com",
+      "linklabel": "Open store"
+    },
+    {
+      "id": "t2",
+      "tab": "stores",
+      "name": "Nintendo Store",
+      "system": "Switch",
+      "genre": "Store",
+      "players": "Free to browse",
+      "desc": "Nintendo's official store.",
+      "link": "https://www.nintendo.com/store/",
+      "linklabel": "Open store"
+    },
+    {
+      "id": "t3",
+      "tab": "stores",
+      "name": "PlayStation Store",
+      "system": "PS1",
+      "genre": "Store",
+      "players": "Free to browse",
+      "desc": "Sony's official PlayStation store.",
+      "link": "https://store.playstation.com",
+      "linklabel": "Open store"
+    },
+    {
+      "id": "g2",
+      "tab": "guides",
+      "name": "PCSX2",
+      "system": "PS2",
+      "genre": "Setup",
+      "players": "Free",
+      "desc": "Setup guides and documentation for the PCSX2 emulator.",
+      "link": "https://pcsx2.net",
+      "linklabel": "Read guide"
+    }
+  ],
+  "tabs": [
+    {
+      "id": "roms",
+      "label": "ROMs"
+    },
+    {
+      "id": "useful",
+      "label": "Useful stuff"
+    },
+    {
+      "id": "guides",
+      "label": "Guides"
+    },
+    {
+      "id": "emus",
+      "label": "Emulators"
+    },
+    {
+      "id": "thor",
+      "label": "AYN Thor stuff"
+    },
+    {
+      "id": "stores",
+      "label": "Official store pages"
+    }
+  ],
+  "cats": [],
+  "resources": [
+    {
+      "id": "r1",
+      "system": "Switch",
+      "title": "Switchbrew",
+      "desc": "Community wiki and documentation for Nintendo Switch homebrew.",
+      "label": "Open site",
+      "url": "https://switchbrew.org",
+      "private": false
+    },
+    {
+      "id": "r2",
+      "system": "GBA",
+      "title": "mGBA",
+      "desc": "Open-source Game Boy Advance emulator.",
+      "label": "Open site",
+      "url": "https://mgba.io",
+      "private": false
+    },
+    {
+      "id": "r3",
+      "system": "PS2",
+      "title": "PCSX2",
+      "desc": "Open-source PlayStation 2 emulator with setup guides.",
+      "label": "Open site",
+      "url": "https://pcsx2.net",
+      "private": false
+    },
+    {
+      "id": "r4",
+      "system": "PS1",
+      "title": "DuckStation",
+      "desc": "PlayStation 1 emulator.",
+      "label": "Open site",
+      "url": "https://www.duckstation.org",
+      "private": false
+    },
+    {
+      "id": "r5",
+      "system": "GameCube",
+      "title": "Dolphin",
+      "desc": "GameCube and Wii emulator.",
+      "label": "Open site",
+      "url": "https://dolphin-emu.org",
+      "private": false
+    },
+    {
+      "id": "r6",
+      "system": "NDS",
+      "title": "melonDS",
+      "desc": "Nintendo DS emulator.",
+      "label": "Open site",
+      "url": "https://melonds.kuribo64.net",
+      "private": false
+    }
+  ],
+  "meta": {
+    "siteName": "Site Shelf",
+    "tiktok": "https://www.tiktok.com/@kolo.985",
+    "clippy": false,
+    "clippyChat": false
+  }
+}
