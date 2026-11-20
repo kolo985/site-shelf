@@ -232,7 +232,7 @@
       "system": "Switch",
       "title": "Switch BIOS",
       "desc": "Firmware and Key Files for Switch",
-      "label": "Open site",
+      "label": "Download",
       "url": "https://switchbrew.org",
       "private": false
     },
