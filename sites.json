@@ -1,6 +1,29 @@
 {
   "sites": [
     {
+      "id": "g1795177195885",
+      "tab": "roms",
+      "name": "Luma Switch",
+      "system": "Switch",
+      "image": "",
+      "desc": "",
+      "genre": "Rom Site",
+      "players": "Free",
+      "dev": "",
+      "year": "",
+      "rating": "",
+      "region": "Global",
+      "gid": "",
+      "size": "",
+      "format": "",
+      "langs": "ES",
+      "version": "",
+      "link": "https://luma-switch.pages.dev/",
+      "linklabel": "Visit Site",
+      "notes": "Nice made little site for Switch Roms",
+      "shots": []
+    },
+    {
       "id": "s1",
       "tab": "guides",
       "name": "Serebii.net",
