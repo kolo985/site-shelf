@@ -1,6 +1,29 @@
 {
   "sites": [
     {
+      "id": "g1795177432182",
+      "tab": "roms",
+      "name": "ROMSFUN",
+      "system": "GBA, Gameboy, DS, 3DS, WII, N64, PS, PS2, Dreamcast, Etc",
+      "image": "",
+      "desc": "",
+      "genre": "Rom Site",
+      "players": "Free",
+      "dev": "",
+      "year": "",
+      "rating": "",
+      "region": "",
+      "gid": "",
+      "size": "",
+      "format": "",
+      "langs": "EN",
+      "version": "",
+      "link": "https://romsfun.com/roms/",
+      "linklabel": "",
+      "notes": "Huge site for alot of roms, mostly more retro stuff like gba but also alot of stuff for og xbox and playstation and such",
+      "shots": []
+    },
+    {
       "id": "g1795177195885",
       "tab": "roms",
       "name": "Luma Switch",
