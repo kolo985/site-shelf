@@ -241,7 +241,7 @@
       "system": "PS2",
       "title": "PS2 BIOS",
       "desc": "BIOS Files for PS2",
-      "label": "Open site",
+      "label": "Download",
       "url": "https://pcsx2.net",
       "private": false
     },
