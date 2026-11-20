@@ -230,7 +230,7 @@
     {
       "id": "r1",
       "system": "Switch",
-      "title": "Switchbrew",
+      "title": "Switch BIOS",
       "desc": "Firmware and Key Files for Switch",
       "label": "Open site",
       "url": "https://switchbrew.org",
