@@ -51,6 +51,11 @@ main{padding:14px 16px 40px;min-width:0}
 .cover{position:relative;aspect-ratio:3/4.2;border-radius:8px;overflow:hidden;background:var(--panel2)}
 .cover img{width:100%;height:100%;object-fit:cover;display:block}
 .cover .gen{width:100%;height:100%;display:flex;align-items:flex-end;padding:12px;font-weight:800;font-size:1.05rem;line-height:1.15;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+#f_systemWrap{grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted)}
+#f_systemWrap[hidden]{display:none}
+.sysbox{display:flex;flex-wrap:wrap;gap:4px 14px;max-height:140px;overflow:auto;border:1px solid #7f9db9;background:#fff;color:#000;padding:6px 8px}
+.sysbox label.chip{flex-direction:row;align-items:center;gap:5px;color:#000;white-space:nowrap}
+.catadd{display:flex;gap:6px}.catadd input{flex:1;min-width:0}
 .strip{position:absolute;top:0;left:0;right:0;height:22px;background:var(--strip);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.12em;display:flex;align-items:center;padding:0 8px;text-transform:uppercase}
 .title{margin:8px 2px 2px;font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .empty{text-align:center;color:var(--muted);padding:60px 10px}
@@ -556,7 +561,11 @@ body .tbtn:active{--by:-42px}
   <form id="form">
     <input type="hidden" id="f_id">
         <label>Name<input id="f_name" required></label>
-    <label id="f_systemWrap">Category<input id="f_system" list="systemList" placeholder="Switch, GBA, PS2, PC, Other…" required></label>
+    <div id="f_systemWrap">
+      <span>Categories (tick one or more)</span>
+      <div id="f_sysBox" class="sysbox"></div>
+      <div class="catadd"><input id="f_sysnew" maxlength="30" placeholder="Add a new category…" autocomplete="off"><button type="button" class="pill small" id="f_sysaddbtn">Add</button></div>
+    </div>
     <label>Section<select id="f_tab"></select></label>
     <label class="full">Link (https://…)<input id="f_link" type="url" placeholder="https://… (optional: you can write it in Notes instead)"></label>
     <label class="full">Thumbnail image URL<input id="f_image" placeholder="https://… (optional, the site’s favicon is used if blank)"></label>
@@ -704,7 +713,8 @@ const tabOf = g => {
   return S.tabs.some(t => t.id === id) ? id : "roms";
 };
 const tabLabelOf = g => (tabList().find(t => t.id === tabOf(g)) || {}).label || "";
-const stripOf = g => tabOf(g) === "roms" ? (g.system || "Library") : (g.genre || tabLabelOf(g));
+const sysOf = g => { const a = Array.isArray(g.systems) && g.systems.length ? g.systems : (g.system ? [g.system] : []); return [...new Set(a.map(x => String(x).trim().slice(0,30)).filter(Boolean))]; };   // every category an entry belongs to (old entries have just "system")
+const stripOf = g => { if(tabOf(g) !== "roms") return g.genre || tabLabelOf(g); const a = sysOf(g); return !a.length ? "Library" : a.length <= 2 ? a.join(" · ") : a[0] + " +" + (a.length - 1); };
 let admin = false, view = "all", filter = {q:"", genre:""}, shots = [];
 
 const MOBILE_Q = "(max-width:600px) and (orientation:portrait)";
@@ -946,7 +956,7 @@ function coverHTML(g){
 }
 function allSystems(){
   const mine = cleanCats(S.cats);
-  const extra = [...new Set(S.sites.filter(g=>tabOf(g)==="roms").map(g=>g.system).filter(Boolean))].filter(s=>!SYSTEMS.includes(s) && !mine.includes(s)).sort();
+  const extra = [...new Set(S.sites.filter(g=>tabOf(g)==="roms").flatMap(sysOf))].filter(s=>!SYSTEMS.includes(s) && !mine.includes(s)).sort();
   return [...SYSTEMS, ...mine, ...extra];
 }
 function renderTabs(){
@@ -959,7 +969,7 @@ function renderTabs(){
 }
 function renderNav(){
   const mine = S.sites.filter(g => tabOf(g) === "roms");
-  const counts = {}; mine.forEach(g => counts[g.system] = (counts[g.system]||0)+1);
+  const counts = {}; mine.forEach(g => sysOf(g).forEach(c => counts[c] = (counts[c]||0)+1));
   const btn = (v,label,n) => `<button class="sys ${view===v?"active":""}" data-view="${esc(v)}"><span>${esc(label)}</span><span class="n">${n}</span></button>`;
   $("systems").innerHTML =
     `<div class="navtitle">Library</div>` + btn("all", tabList().find(t=>t.id==="roms").all, mine.length) +
@@ -988,8 +998,8 @@ function render(){
   const q = filter.q.toLowerCase();
   const inTab = S.sites.filter(g => tabOf(g) === tab);
   const list = inTab.filter(g =>
-    (view === "all" || g.system === view) &&
-    (!q || [g.name,g.genre,g.dev,isRoms?g.system:"",g.desc,hostOf(g.link)].join(" ").toLowerCase().includes(q)) &&
+    (view === "all" || sysOf(g).includes(view)) &&
+    (!q || [g.name,g.genre,g.dev,isRoms?sysOf(g).join(" "):"",g.desc,hostOf(g.link)].join(" ").toLowerCase().includes(q)) &&
     (!filter.genre || g.genre === filter.genre));
   $("grid").innerHTML = list.map(g => `
     <div class="card" tabindex="0" role="button" data-id="${esc(g.id)}" aria-label="${esc(g.name)}">
@@ -999,7 +1009,7 @@ function render(){
   $("empty").hidden = list.length > 0;
   $("empty").textContent = inTab.length ? `Nothing in ${T.label} matches your filters.` : `Nothing in ${T.label} yet.` + (admin ? ` Use “${T.add}” to add one.` : "");
   $("count").textContent = `${view==="all"?T.all:view} · ${list.length} ${list.length===1?T.one:T.many}`;
-  const genres = [...new Set(inTab.filter(g => view==="all" || g.system===view).map(g=>g.genre).filter(Boolean))].sort();
+  const genres = [...new Set(inTab.filter(g => view==="all" || sysOf(g).includes(view)).map(g=>g.genre).filter(Boolean))].sort();
   if(filter.genre && !genres.includes(filter.genre)) filter.genre = "";
   $("genre").innerHTML = `<option value="">All types</option>` + genres.map(x=>`<option ${x===filter.genre?"selected":""}>${esc(x)}</option>`).join("");
 }
@@ -1007,7 +1017,7 @@ function openDetail(id){
   const g = S.sites.find(x=>x.id===id); if(!g) return;
   shots = (g.shots||[]).map(safeUrl).filter(Boolean);
   const link = safeUrl(g.link), host = hostOf(link);
-  const infoRows = [["Section",tabLabelOf(g)],["Category",tabOf(g)==="roms"?g.system:""],["Languages",g.langs],["Region",g.region]]
+  const infoRows = [["Section",tabLabelOf(g)],[sysOf(g).length > 1 ? "Categories" : "Category",tabOf(g)==="roms"?sysOf(g).join(", "):""],["Languages",g.langs],["Region",g.region]]
     .filter(r=>r[1]).map(r=>`<li><b>${r[0]}:</b> ${esc(r[1])}</li>`).join("");
   const stat = (l,v) => v ? `<div><small>${l}</small><span>${esc(v)}</span></div>` : "";
   const stats = [stat("Type",g.genre), stat("Access",g.players), stat("Owner",g.dev), stat("Year",g.year ? String(g.year) : ""),
@@ -1046,14 +1056,28 @@ function openForm(g){
   $("formTitle").textContent = g ? "Edit entry" : curTab().add.replace("+ ","");
   const set = (k,v) => $("f_"+k).value = v ?? "";
   $("f_tab").innerHTML = tabList().map(t => `<option value="${esc(t.id)}">${esc(t.label)}</option>`).join("");
-  set("id",g?.id); set("tab", g ? tabOf(g) : tab); set("name",g?.name); set("system", g?.system || (view!=="all"?view:""));
+  set("id",g?.id); set("tab", g ? tabOf(g) : tab); set("name",g?.name); renderSysBox(g ? sysOf(g) : (view!=="all" ? [view] : []));
   set("image",g?.image); set("desc",g?.desc); set("genre",g?.genre); set("players",g?.players);
   set("dev",g?.dev); set("year",g?.year); set("rating",g?.rating); set("region",g?.region);
   set("gid",g?.gid); set("size",g?.size); set("format",g?.format); set("langs",g?.langs);
   set("version",g?.version); set("link",g?.link); set("linklabel",g?.linklabel); set("shots",(g?.shots||[]).join("\n")); set("notes",g?.notes); syncCat();
   $("formOv").classList.add("open");
 }
-function syncCat(){ const r = $("f_tab").value === "roms"; $("f_systemWrap").hidden = !r; $("f_system").required = r; }
+function syncCat(){ const r = $("f_tab").value === "roms"; $("f_systemWrap").hidden = !r; }
+function renderSysBox(sel){
+  sel = new Set(sel || []);
+  const all = allSystems(); sel.forEach(c => { if(!all.includes(c)) all.push(c); });
+  $("f_sysBox").innerHTML = all.map(c => `<label class="chip"><input type="checkbox" value="${esc(c)}"${sel.has(c) ? " checked" : ""}> ${esc(c)}</label>`).join("");
+}
+const pickedSys = () => [...$("f_sysBox").querySelectorAll("input:checked")].map(i => i.value);
+function addSysFromForm(){
+  const el = $("f_sysnew"), name = el.value.trim().slice(0,30); if(!name) return;
+  const sel = pickedSys(), hit = allSystems().find(c => c.toLowerCase() === name.toLowerCase());
+  if(hit) sel.push(hit); else { S.cats = cleanCats([...(S.cats||[]), name]); sel.push(name); save(); }
+  el.value = ""; renderSysBox(sel); renderNav();
+}
+$("f_sysaddbtn").addEventListener("click", addSysFromForm);
+$("f_sysnew").addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); addSysFromForm(); } });
 $("f_tab").addEventListener("change", syncCat);
 function closeAll(){ document.querySelectorAll(".overlay").forEach(o=>o.classList.remove("open")); }
 
@@ -1062,8 +1086,10 @@ $("form").addEventListener("submit", e => {
   const v = k => $("f_"+k).value.trim();
   if(v("link") && !safeUrl(v("link"))) return alert("The link must start with http:// or https://");
   const id = v("id") || "g" + Date.now();
+  const isR = (v("tab") || "roms") === "roms", picked = pickedSys();
+  if(isR && !picked.length) return alert("Pick at least one category.");
   const g = {
-    id, tab:v("tab") || "roms", name:v("name"), system: v("tab") === "roms" ? (v("system") || "Other") : "", image:v("image"), desc:v("desc"),
+    id, tab:v("tab") || "roms", name:v("name"), system: isR ? picked[0] : "", systems: isR ? picked : [], image:v("image"), desc:v("desc"),
     genre:v("genre"), players:v("players"), dev:v("dev"),
     year: v("year") ? Number(v("year")) : "", rating: v("rating") !== "" ? Number(v("rating")) : "",
     region:v("region"), gid:v("gid"), size:v("size"), format:v("format"), langs:v("langs"),
