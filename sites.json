@@ -1,6 +1,30 @@
 {
   "sites": [
     {
+      "id": "g1795635400072",
+      "tab": "emus",
+      "name": "GameNative",
+      "system": "",
+      "systems": [],
+      "image": "",
+      "desc": "GameNative lets you run the PC games in your Steam, Epic and GOG libraries directly on Android — no streaming required. Your saves sync to the cloud, so you can stop on your PC and keep going on your phone.",
+      "genre": "",
+      "players": "",
+      "dev": "",
+      "year": "",
+      "rating": "",
+      "region": "",
+      "gid": "",
+      "size": "",
+      "format": "",
+      "langs": "",
+      "version": "",
+      "link": "https://github.com/utkarshdalal/GameNative/releases/latest",
+      "linklabel": "",
+      "notes": "I Use this for PC games along side GameHub, although I tend to like GameNative more",
+      "shots": []
+    },
+    {
       "id": "g1795635291009",
       "tab": "emus",
       "name": "Swiff",
