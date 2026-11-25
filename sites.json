@@ -472,9 +472,9 @@
     },
     {
       "id": "g1795178684215",
-      "system": "Switch",
       "tab": "roms",
       "name": "Romsheaven",
+      "system": "Switch",
       "systems": [
         "Switch",
         "GBA",
@@ -509,7 +509,7 @@
       "version": "",
       "link": "https://romheaven.com",
       "linklabel": "",
-      "notes": "Multi-system rom site that has pretty much all you need.",
+      "notes": "Multi-system rom site that has pretty much all you need",
       "shots": []
     },
     {
