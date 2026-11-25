@@ -1,6 +1,30 @@
 {
   "sites": [
     {
+      "id": "g1795635291009",
+      "tab": "emus",
+      "name": "Swiff",
+      "system": "",
+      "systems": [],
+      "image": "",
+      "desc": "Swiff is an Android app that lets you play classic Adobe Flash (SWF) games and animations on phones and tablets after Adobe ended Flash support.",
+      "genre": "",
+      "players": "",
+      "dev": "",
+      "year": "",
+      "rating": "",
+      "region": "",
+      "gid": "",
+      "size": "",
+      "format": "",
+      "langs": "",
+      "version": "",
+      "link": "https://github.com/NaviVani-dev/Swiff/releases/latest",
+      "linklabel": "",
+      "notes": "Personally dont use it alot but very cool and also has some dual-screen features",
+      "shots": []
+    },
+    {
       "id": "g1795634920494",
       "tab": "emus",
       "name": "ARMSX2",
