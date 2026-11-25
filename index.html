@@ -426,6 +426,32 @@ body .tbtn:active{--by:-42px}
 .lcd{display:flex;min-width:0;padding:1px;font-size:0;line-height:0;color:transparent;background:#000;border:1px solid;border-color:#808080 #fff #fff #808080}
 .lcd .dg{display:block;width:13px;height:23px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAEUCAYAAADwRbybAAABiklEQVR42u1a0Q6DIAwEw4f7593DlqV20FJBHHgki06sVSnX62EMIVBwto3/2Y0tb7S/vRHfl1uxX+4sGFAonRT0i+gGj/REyo+fF7k7q0UeRjs7oBnwcMI4dfXkmk/umasZyNuOzWgECMPUGBiw/SICEAYI87XE06Er51JlziV5e5qhfPAURMbOGVJ3LP9zo2iMz8/bs+KJ91/PwsjLwjhZrJrulDOyPNHknkr0uujJ4uXUwssBYYCw+SDMGxGpJiLknWzayD8pIpI2b0rHt5qIkMOxLIQ151x31kDObWEsFvunYYVkv2dCRFQUkvdExEos7CDe5qCqpCt/315m8GyVwDKa2VPwehoj54OFgYUtWUgCwp4CYdDCoIXdAGHnVyTpDB0lw1CeEz8HVBlI9kMLg5yPQhKFJLSwxbSwS3MuIAwsDHI+IGx2CGuWFlYr+MdKCy5h5nJpYaVPW/sRX0AYViQRESgkh8v5+C7sNi1skx2l3BQzb9QPYV519CB01qxIRqxIrr0i+QI+MXSzsyPihgAAAABJRU5ErkJggg==) 0 0 no-repeat;image-rendering:pixelated}
 </style>
+<style id="xp-notice-alert">
+/* ---- tab notice (shows between the item count and the grid) ---- */
+.tabnotice{display:flex;gap:8px;align-items:flex-start;margin:10px 0 0;padding:8px 10px;background:#ffffe1;border:1px solid #aca899;color:#000;font:11px/16px Tahoma,Verdana,sans-serif}
+.tabnotice[hidden]{display:none}
+.tabnotice .nt{flex:1;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}
+body .xi.xpinfo{background-image:url(data:image/png;base64,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)}
+body .tabnotice .xi{width:16px;height:16px;margin-top:-1px;flex:none}
+.tabtool.nt-tool{font-weight:700;font-style:italic;font-family:Georgia,serif}
+/* ---- Windows XP balloon tip, pointing at the Resources button ---- */
+.xpballoon{position:absolute;z-index:30;width:max-content;min-width:230px;max-width:min(360px,calc(100% - 16px));box-sizing:border-box;padding:10px 28px 12px 12px;background:#ffffe1;color:#000;border:1px solid #000;border-radius:8px;
+  font:11px/1.35 Tahoma,Verdana,sans-serif;box-shadow:2px 3px 4px rgba(0,0,0,.35);cursor:default;--tx:240px}
+.xpballoon{opacity:0;transition:opacity .5s ease}
+.xpballoon.show{opacity:1}
+.xpballoon[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.xpballoon{transition:none}}
+.xpballoon::before,.xpballoon::after{content:"";position:absolute;width:0;height:0;border-style:solid;border-color:transparent}
+.xpballoon::before{top:-17px;left:calc(var(--tx) - 14px);border-width:0 0 17px 14px;border-bottom-color:#000}
+.xpballoon::after{top:-16px;left:calc(var(--tx) - 14px);border-width:0 0 16px 13px;border-bottom-color:#ffffe1}
+.xpballoon .bt{display:flex;align-items:flex-start;gap:6px;font-weight:700;line-height:16px;margin-bottom:6px;overflow-wrap:anywhere}
+.xpballoon .bt span{flex:1;min-width:0}
+.xpballoon .bt .xi{width:16px;height:16px;flex:none;transform:translateY(-1px)}
+.xpballoon .bm{white-space:pre-wrap;overflow-wrap:anywhere;line-height:15px;cursor:pointer}
+.xpballoon .bx{position:absolute;top:4px;right:4px;width:15px;height:15px;padding:0;border:1px solid transparent;border-radius:3px;background:none;color:#000;font:700 10px/1 Tahoma,sans-serif;cursor:pointer}
+.xpballoon .bx:hover{border-color:#7f7f7f;background:#fff}
+.xpballoon .bx:active{background:#ece9d8}
+</style>
 </head>
 <body>
 <div id="boot" class="first" role="status" aria-label="Starting up"><div class="bs">
@@ -472,12 +498,18 @@ body .tbtn:active{--by:-42px}
   <main>
     <section id="gamesView">
       <div class="count" id="count"></div>
+      <div class="tabnotice" id="tabNotice" hidden><i class="xi xpinfo"></i><div class="nt" id="tabNoticeText"></div></div>
       <div class="grid" id="grid"></div>
       <div class="empty" id="empty" hidden>No sites match your filters.</div>
     </section>
   </main>
 </div>
 
+<div class="xpballoon" id="resBalloon" role="status" hidden>
+  <button class="bx" id="resBalloonX" aria-label="Close">&#10005;</button>
+  <div class="bt"><i class="xi xpinfo"></i><span id="resBalloonTitle"></span></div>
+  <div class="bm" id="resBalloonMsg"></div>
+</div>
 </div><!-- /xpwin -->
 
 <div class="overlay" id="detailOv"><div class="modal" id="detail"></div></div>
@@ -593,7 +625,7 @@ body .tbtn:active{--by:-42px}
   <h2>Resources</h2>
   <div class="chips" id="resChips" style="margin:10px 0 16px"></div>
   <div class="rgrid" id="resList"></div>
-  <div class="row"><button class="pill active" id="resAdd" data-resadd hidden>+ Add link</button><button class="pill" data-close>Close</button></div>
+  <div class="row"><button class="pill active" id="resAdd" data-resadd hidden>+ Add link</button><button class="pill" id="resAlertBtn" hidden>Welcome alert…</button><button class="pill" data-close>Close</button></div>
   </div>
 </div></div>
 
@@ -611,6 +643,32 @@ body .tbtn:active{--by:-42px}
     <label class="full">Description<textarea id="r_desc" rows="3" maxlength="300"></textarea></label>
     <label class="full check"><input type="checkbox" id="r_private"> Private: only visible when I'm logged in, and left out of “Export sites.json”</label>
     <div class="full row"><button class="pill active" type="submit">Save</button><button class="pill" type="button" data-resback>Cancel</button></div>
+  </form>
+  </div>
+</div></div>
+
+<div class="overlay" id="noticeOv"><div class="modal narrow">
+  <div class="tb"><span class="tt">Tab notice</span><span class="tbtns"><button class="tbtn x" data-close aria-label="Close">✕</button></span></div>
+  <div class="mb">
+  <h2 id="noticeTitle">Notice</h2>
+  <form id="noticeForm">
+    <input type="hidden" id="n_tab">
+    <label class="full">Text shown above the items in this tab (leave empty for no notice)<textarea id="n_text" rows="4" maxlength="500"></textarea></label>
+    <div class="full row" style="margin-top:10px"><button class="pill active" type="submit">Save</button><button class="pill" type="button" id="n_clear">Remove notice</button><button class="pill" type="button" data-close>Cancel</button></div>
+  </form>
+  </div>
+</div></div>
+
+<div class="overlay" id="alertOv"><div class="modal narrow">
+  <div class="tb"><span class="tt">Welcome alert</span><span class="tbtns"><button class="tbtn x" data-close aria-label="Close">✕</button></span></div>
+  <div class="mb">
+  <h2>Welcome alert</h2>
+  <p style="margin:0 0 8px;font-size:11px;color:#4d4d4d">A Windows XP balloon that points at the Resources button. Each visitor sees it until they close it; if you change the text, it shows again once.</p>
+  <form id="alertForm">
+    <label class="full check"><input type="checkbox" id="a_on" checked> Show the alert</label>
+    <label class="full">Title<input id="a_title" maxlength="60" placeholder="Looking for something?"></label>
+    <label class="full">Message<textarea id="a_text" rows="4" maxlength="300" placeholder="Check the Resources button for useful stuff!"></textarea></label>
+    <div class="full row" style="margin-top:10px"><button class="pill active" type="submit">Save</button><button class="pill" type="button" id="a_clear">Remove alert</button><button class="pill" type="button" data-close>Cancel</button></div>
   </form>
   </div>
 </div></div>
@@ -691,7 +749,7 @@ const defaultTabs = () => DEFAULT_TABS.map(t => ({id:t.id, label:t.label}));
 function cleanTabs(a){
   if(!Array.isArray(a)) return defaultTabs();
   const seen = new Set(), out = [];
-  a.forEach(t => { if(t && t.id && t.label && !seen.has(String(t.id))){ seen.add(String(t.id)); out.push({id:String(t.id), label:String(t.label).slice(0,30)}); } });
+  a.forEach(t => { if(t && t.id && t.label && !seen.has(String(t.id))){ seen.add(String(t.id)); const o = {id:String(t.id), label:String(t.label).slice(0,30)}; const nt = typeof t.notice === "string" ? t.notice.trim().slice(0,500) : ""; if(nt) o.notice = nt; out.push(o); } });
   if(!seen.has("roms")) out.unshift({id:"roms", label:"ROMs"});
   return out;
 }
@@ -942,7 +1000,7 @@ function allSystems(){
 function renderTabs(){
   $("tabs").innerHTML = tabList().map(t => {
     const n = S.sites.filter(g => tabOf(g) === t.id).length, on = t.id === tab;
-    const tools = admin && on ? `<span class="tabtool" data-tabrename="${esc(t.id)}" title="Rename tab">✎</span>` +
+    const tools = admin && on ? `<span class="tabtool" data-tabrename="${esc(t.id)}" title="Rename tab">✎</span><span class="tabtool nt-tool" data-tabnotice="${esc(t.id)}" title="${t.notice ? "Edit notice" : "Add a notice"}">i</span>` +
       (t.id !== "roms" ? `<span class="tabtool" data-tabdel="${esc(t.id)}" title="Delete tab">✕</span>` : "") : "";
     return `<button class="tab ${on?"active":""}" role="tab" aria-selected="${on}" data-tab="${esc(t.id)}"${admin?' draggable="true"':""}>${esc(t.label)} <small>(${n})</small>${tools}</button>`;
   }).join("") + (admin ? `<button class="tab tabadd" data-tabadd title="Add a tab" aria-label="Add a tab">+</button>` : "");
@@ -989,6 +1047,8 @@ function render(){
   $("empty").hidden = list.length > 0;
   $("empty").textContent = inTab.length ? `Nothing in ${T.label} matches your filters.` : `Nothing in ${T.label} yet.` + (admin ? ` Use “${T.add}” to add one.` : "");
   $("count").textContent = `${view==="all"?T.all:view} · ${list.length} ${list.length===1?T.one:T.many}`;
+  $("tabNotice").hidden = !T.notice; $("tabNoticeText").textContent = T.notice || "";
+  placeBalloon();
   const genres = [...new Set(inTab.filter(g => view==="all" || sysOf(g).includes(view)).map(g=>g.genre).filter(Boolean))].sort();
   if(filter.genre && !genres.includes(filter.genre)) filter.genre = "";
   $("genre").innerHTML = `<option value="">All types</option>` + genres.map(x=>`<option ${x===filter.genre?"selected":""}>${esc(x)}</option>`).join("");
@@ -1084,7 +1144,7 @@ $("form").addEventListener("submit", e => {
 /* ---------- Resources (editable link cards, grouped by system) ---------- */
 let resFilter = "all";
 const visibleRes = () => S.resources.filter(r => admin || !r.private);
-function openResources(){ renderResources(); $("resOv").classList.add("open"); }
+function openResources(){ dismissBalloon(); renderResources(); $("resOv").classList.add("open"); }
 function renderResources(){
   const list = visibleRes();
   const present = [...new Set(list.map(r=>r.system).filter(Boolean))];
@@ -1093,7 +1153,7 @@ function renderResources(){
   const shown = list.filter(r => resFilter === "all" || r.system === resFilter);
   $("resChips").innerHTML = ["all", ...order].map(s =>
     `<button class="pill small ${s===resFilter?"active":""}" data-resfilter="${esc(s)}">${s==="all"?"All":esc(s)}</button>`).join("");
-  $("resAdd").hidden = !admin;
+  $("resAdd").hidden = !admin; $("resAlertBtn").hidden = !admin;
   $("resList").innerHTML = shown.length ? shown.map(r => {
     const url = safeUrl(r.url);
     return `<div class="rcard">
@@ -1126,6 +1186,63 @@ $("resForm").addEventListener("submit", e => {
   save(); closeAll(); render(); openResources();
 });
 
+/* ---------- Tab notice (admin) ---------- */
+$("noticeForm").addEventListener("submit", e => {
+  e.preventDefault(); if(!admin) return;
+  const x = S.tabs.find(y => y.id === $("n_tab").value); if(!x) return;
+  const v = $("n_text").value.trim().slice(0,500);
+  if(v) x.notice = v; else delete x.notice;
+  save(); closeAll(); render();
+});
+$("n_clear").addEventListener("click", () => { $("n_text").value = ""; $("noticeForm").requestSubmit(); });
+
+/* ---------- Welcome alert: XP balloon tip pointing at the Resources button ---------- */
+const ALERT_SEEN_KEY = "siteshelf_resalert_seen";
+const alertCfg = () => { const a = S.meta && S.meta.resAlert; return a && a.on !== false && String(a.text || "").trim() ? a : null; };
+const alertSig = a => { let h = 5381; const t = (a.title || "") + "\n" + a.text; for(let i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) | 0; return String(h); };
+const balloonSeen = a => lsGet(ALERT_SEEN_KEY) === alertSig(a);
+let balloonShown = "";
+function dismissBalloon(){
+  const a = S.meta && S.meta.resAlert, b = $("resBalloon"); if(a && a.text) lsSet(ALERT_SEEN_KEY, alertSig(a));
+  if(b.hidden || b.dataset.fading) return;
+  b.dataset.fading = "1"; b.classList.remove("show");   // fade out, then hide
+  setTimeout(() => { b.hidden = true; delete b.dataset.fading; }, 520);
+}
+function placeBalloon(){ try{ placeBalloonNow(); }catch(e){ /* window manager not ready yet */ } }
+function placeBalloonNow(){
+  const b = $("resBalloon"), a = alertCfg();
+  const bootE = $("boot"), mainE = $("mainWin");
+  const bootUp = bootE && !bootE.classList.contains("gone") && !bootE.classList.contains("off");
+  if(!a || balloonSeen(a) || bootUp || mainE.classList.contains("min") || !$("resBtn").offsetWidth || $("resOv").classList.contains("open")){ if(!b.dataset.fading){ b.hidden = true; b.classList.remove("show"); } return; }
+  $("resBalloonTitle").textContent = a.title || ""; $("resBalloonTitle").parentNode.hidden = !a.title;
+  $("resBalloonMsg").textContent = a.text;
+  const wasHidden = b.hidden; b.hidden = false;
+  const w = mainE.getBoundingClientRect(), r = $("resBtn").getBoundingClientRect();
+  const cx = r.left + r.width / 2 - w.left - mainE.clientLeft, bw = b.offsetWidth;
+  const left = Math.max(8, Math.min(cx + 26 - bw, mainE.clientWidth - bw - 8));
+  b.style.left = left + "px"; b.style.top = (r.bottom - w.top - mainE.clientTop + 14) + "px";
+  b.style.setProperty("--tx", Math.max(22, Math.min(cx - left, bw - 20)) + "px");
+  if(wasHidden){ void b.offsetWidth; b.classList.add("show"); }   // fade in
+  const sig = alertSig(a);
+  if(balloonShown !== sig){ balloonShown = sig; try{ window.Snd && Snd.play("notify"); }catch(e){} }
+}
+$("resBalloonX").addEventListener("click", e => { e.stopPropagation(); dismissBalloon(); });
+$("resBalloonMsg").addEventListener("click", () => { resFilter = "all"; openResources(); });
+
+$("resAlertBtn").addEventListener("click", () => {
+  if(!admin) return; const a = S.meta.resAlert || {};
+  $("a_on").checked = a.on !== false; $("a_title").value = a.title || ""; $("a_text").value = a.text || "";
+  closeAll(); $("alertOv").classList.add("open"); $("a_text").focus();
+});
+$("alertForm").addEventListener("submit", e => {
+  e.preventDefault(); if(!admin) return;
+  const text = $("a_text").value.trim().slice(0,300), title = $("a_title").value.trim().slice(0,60);
+  if(text) S.meta.resAlert = {on:$("a_on").checked, title, text}; else delete S.meta.resAlert;
+  try{ localStorage.removeItem(ALERT_SEEN_KEY); }catch(err){}
+  balloonShown = ""; save(); closeAll(); render();
+});
+$("a_clear").addEventListener("click", () => { $("a_text").value = ""; $("a_title").value = ""; $("alertForm").requestSubmit(); });
+
 /* ---------- Events ---------- */
 document.addEventListener("click", e => {
   const t = e.target;
@@ -1143,6 +1260,8 @@ document.addEventListener("click", e => {
     }
     const cd = t.closest("[data-catdel]");
     if(cd){ S.cats = cleanCats(S.cats).filter(c => c !== cd.dataset.catdel); if(view === cd.dataset.catdel) view = "all"; save(); return render(); }
+    const tn = t.closest("[data-tabnotice]");
+    if(tn){ const x = S.tabs.find(y => y.id === tn.dataset.tabnotice); if(x){ $("n_tab").value = x.id; $("noticeTitle").textContent = "Notice for “" + x.label + "”"; $("n_text").value = x.notice || ""; $("noticeOv").classList.add("open"); $("n_text").focus(); } return; }
     const tr = t.closest("[data-tabrename]");
     if(tr){ const x = S.tabs.find(y => y.id === tr.dataset.tabrename); const name = (prompt("Rename tab:", x.label) || "").trim().slice(0,30);
       if(x && name){ x.label = name; save(); render(); } return; }
@@ -1319,6 +1438,10 @@ function closeWin(id){
 function toggleMax(id){ const w = wins.get(id); if(w && !w.nomax) w.el.classList.toggle("max"); }
 function openMain(){ const w = wins.get("main"); w.open = true; raise("main"); }
 
+addEventListener("resize", placeBalloon);
+new MutationObserver(placeBalloon).observe(mainEl, {attributes:true, attributeFilter:["class"]});
+new MutationObserver(placeBalloon).observe(bootEl, {attributes:true, attributeFilter:["class"]});
+setTimeout(placeBalloon, 400);
 $("winMin").addEventListener("click", () => minimize("main"));
 $("winMax").addEventListener("click", () => toggleMax("main"));
 $("winClose").addEventListener("click", () => closeWin("main"));
