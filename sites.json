@@ -2,9 +2,9 @@
   "sites": [
     {
       "id": "g1795632150932",
+      "system": "",
       "tab": "guides",
       "name": "Joeysretrohandhelds Guides",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Joey's Retro Handheld guide site",
@@ -26,9 +26,9 @@
     },
     {
       "id": "g1795632093902",
+      "system": "",
       "tab": "guides",
       "name": "Retrogamecorps Guides",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Retrogamecorps site for handheld guides",
@@ -50,9 +50,9 @@
     },
     {
       "id": "g1795632041615",
+      "system": "",
       "tab": "guides",
       "name": "25 AYN Thor Settings You NEED To Change",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "Usefull AYN Thor settings tips",
@@ -74,9 +74,9 @@
     },
     {
       "id": "g1795631936676",
+      "system": "",
       "tab": "guides",
       "name": "AYN Thor Starter Guide",
-      "system": "",
       "systems": [],
       "image": "",
       "desc": "AYN Thor Starter Guide from Retro Game Corps",
@@ -718,7 +718,8 @@
     },
     {
       "id": "emus",
-      "label": "Emulators"
+      "label": "Emulators",
+      "notice": "Instead of using these individual sites, I highly advise you to use Obtanium with the Obtanium Emulator Pack."
     },
     {
       "id": "thor",
@@ -810,13 +811,13 @@
   ],
   "meta": {
     "siteName": "Site Shelf",
-    "tiktok": "https://www.tiktok.com/@kolo.985",
-    "clippy": false,
-    "clippyChat": false,
     "resAlert": {
       "on": true,
       "title": "Looking for something?",
-      "text": "Check out the Resources Menu for some useful stuff!"
-    }
+      "text": "Check out the Resources tab for useful stuff!"
+    },
+    "tiktok": "https://www.tiktok.com/@kolo.985",
+    "clippy": false,
+    "clippyChat": false
   }
 }
