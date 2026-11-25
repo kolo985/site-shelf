@@ -731,7 +731,8 @@
     },
     {
       "id": "emus",
-      "label": "Emulators"
+      "label": "Emulators",
+      "notice": "Instead of installing these individually, I highly advise you using Obtanium (Useful stuff) with the Obtanium Emulator Pack (Resources)"
     },
     {
       "id": "thor",
