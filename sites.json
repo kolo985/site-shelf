@@ -1,6 +1,30 @@
 {
   "sites": [
     {
+      "id": "g1795632093902",
+      "tab": "guides",
+      "name": "Retrogamecorps Guides",
+      "system": "",
+      "systems": [],
+      "image": "",
+      "desc": "Retrogamecorps site for handheld guides",
+      "genre": "",
+      "players": "",
+      "dev": "",
+      "year": "",
+      "rating": "",
+      "region": "",
+      "gid": "",
+      "size": "",
+      "format": "",
+      "langs": "",
+      "version": "",
+      "link": "https://retrogamecorps.com/category/guides/",
+      "linklabel": "",
+      "notes": "",
+      "shots": []
+    },
+    {
       "id": "g1795632041615",
       "tab": "guides",
       "name": "25 AYN Thor Settings You NEED To Change",
