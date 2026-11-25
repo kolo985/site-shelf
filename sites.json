@@ -1,6 +1,30 @@
 {
   "sites": [
     {
+      "id": "g1795634920494",
+      "tab": "emus",
+      "name": "ARMSX2",
+      "system": "",
+      "systems": [],
+      "image": "",
+      "desc": "ARMSX2 is a free and open-source PlayStation 2 (PS2) emulator based on PCSX2. Its purpose is to emulate the PS2's hardware.",
+      "genre": "Emulator",
+      "players": "",
+      "dev": "",
+      "year": "",
+      "rating": "",
+      "region": "",
+      "gid": "",
+      "size": "",
+      "format": "",
+      "langs": "",
+      "version": "",
+      "link": "https://github.com/ARMSX2/ARMSX2/releases/latest",
+      "linklabel": "",
+      "notes": "New PS2 Emulator I personally use",
+      "shots": []
+    },
+    {
       "id": "g1795632150932",
       "tab": "guides",
       "name": "Joeysretrohandhelds Guides",
