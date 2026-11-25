@@ -804,7 +804,7 @@
       "title": "Obtainium Emulator Pack",
       "desc": ".json File for Obtainium which gets u emulators and some other goodies too",
       "label": "Download",
-      "url": "https://github.com/RJNY/Obtainium-Emulation-Pack/releases",
+      "url": "https://github.com/RJNY/Obtainium-Emulation-Pack/releases/latest",
       "private": false
     },
     {
