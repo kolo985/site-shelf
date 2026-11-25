@@ -744,7 +744,7 @@
     {
       "id": "e5",
       "tab": "emus",
-      "name": "melonDS",
+      "name": "WatermelonDS",
       "system": "",
       "systems": [],
       "image": "",
@@ -760,9 +760,9 @@
       "format": "",
       "langs": "",
       "version": "",
-      "link": "https://melonds.kuribo64.net",
+      "link": "https://github.com/SapphireRhodonite/WatermelonDS/releases/latest",
       "linklabel": "Open",
-      "notes": "",
+      "notes": "NDS Emulator I use for my AYN Thor",
       "shots": []
     }
   ],
