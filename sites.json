@@ -1,6 +1,30 @@
 {
   "sites": [
     {
+      "id": "g1795632150932",
+      "tab": "guides",
+      "name": "Joeysretrohandhelds Guides",
+      "system": "",
+      "systems": [],
+      "image": "",
+      "desc": "Joey's Retro Handheld guide site",
+      "genre": "",
+      "players": "",
+      "dev": "",
+      "year": "",
+      "rating": "",
+      "region": "",
+      "gid": "",
+      "size": "",
+      "format": "",
+      "langs": "",
+      "version": "",
+      "link": "https://www.joeysretrohandhelds.com/guides/",
+      "linklabel": "",
+      "notes": "",
+      "shots": []
+    },
+    {
       "id": "g1795632093902",
       "tab": "guides",
       "name": "Retrogamecorps Guides",
