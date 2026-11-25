@@ -587,9 +587,9 @@
     },
     {
       "id": "g1795178226196",
-      "system": "Switch",
       "tab": "roms",
       "name": "NXBrew",
+      "system": "Switch",
       "systems": [
         "Switch",
         "Switch 2"
