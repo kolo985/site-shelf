@@ -555,9 +555,9 @@
     },
     {
       "id": "g1795178409460",
-      "system": "Switch",
       "tab": "roms",
       "name": "Ziperto",
+      "system": "Switch",
       "systems": [
         "Switch",
         "3DS",
