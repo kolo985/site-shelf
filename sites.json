@@ -1,6 +1,30 @@
 {
   "sites": [
     {
+      "id": "g1795631936676",
+      "tab": "guides",
+      "name": "AYN Thor Starter Guide",
+      "system": "",
+      "systems": [],
+      "image": "",
+      "desc": "AYN Thor Starter Guide from Retro Game Corps",
+      "genre": "",
+      "players": "",
+      "dev": "",
+      "year": "",
+      "rating": "",
+      "region": "",
+      "gid": "",
+      "size": "",
+      "format": "",
+      "langs": "",
+      "version": "",
+      "link": "https://www.youtube.com/watch?v=lNfo6MkyPpk",
+      "linklabel": "",
+      "notes": "",
+      "shots": []
+    },
+    {
       "id": "g1795180655926",
       "system": "",
       "tab": "useful",
