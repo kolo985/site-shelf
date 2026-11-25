@@ -614,9 +614,9 @@
     },
     {
       "id": "g1795178143450",
-      "system": "GBA",
       "tab": "roms",
       "name": "Vimm's Lair: The Vault",
+      "system": "GBA",
       "systems": [
         "GBA",
         "PS2",
