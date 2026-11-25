@@ -806,15 +806,6 @@
       "label": "Download",
       "url": "https://github.com/RJNY/Obtainium-Emulation-Pack/releases/latest",
       "private": false
-    },
-    {
-      "id": "r1795177078984",
-      "system": "Switch 2",
-      "title": "BananaNative",
-      "desc": "Switch 2 Native Android Emulator for Switch 2 dumps",
-      "label": "Download",
-      "url": "https://git.eden-emu.dev/moceure/BananaNative/releases",
-      "private": false
     }
   ],
   "meta": {
